@@ -1,0 +1,15 @@
+build
+files
+venv
+uploads
+dumps
+*.pyc
+*.mo
+*.log
+*.sass-cache
+*.ini
+*.sublime-*
+*.swp
+static
+git
+[0-9]
