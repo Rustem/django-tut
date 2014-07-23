@@ -69,6 +69,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'almatut.sqlite3'),
+        'TEST_NAME': 'test_almatut.sqlite3',
         'USER': 'almacloud',
         'PASSWORD': 'f1b0nacc1',
     },

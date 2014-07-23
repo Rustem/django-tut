@@ -10,3 +10,7 @@ class Company(models.Model):
 
     class Meta:
         db_table = "company"
+
+    @classmethod
+    def get_company(cls, pk):
+        return Company.objects.get(pk=pk)
