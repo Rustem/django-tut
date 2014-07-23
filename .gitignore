@@ -10,6 +10,7 @@ dumps
 *.ini
 *.sublime-*
 *.swp
+*.sqlite3
 static
 git
 [0-9]

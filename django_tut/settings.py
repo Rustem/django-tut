@@ -10,8 +10,16 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
+def rel(*x):
+    return os.path.join(BASE_DIR, *x)
+
+PROJECT_BASE_DIR = rel(BASE_DIR, 'django_tut')
+
+sys.path.insert(0, rel(PROJECT_BASE_DIR, 'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,6 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'company',
+    'south'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,8 +68,10 @@ WSGI_APPLICATION = 'django_tut.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'NAME': os.path.join(BASE_DIR, 'almatut.sqlite3'),
+        'USER': 'almacloud',
+        'PASSWORD': 'f1b0nacc1',
+    },
 }
 
 # Internationalization
@@ -80,3 +92,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = rel('..', 'static')
+
+STATICFILES_DIRS = (
+    rel('static'),
+    rel('company', 'static')
+)
