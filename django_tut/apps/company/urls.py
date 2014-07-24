@@ -1,5 +1,10 @@
 from django.conf.urls import patterns, url
-from company.views import CompanyIndexView, CompanyCreateView, CompanyDetailView, CompanyUpdateView, CompanyDeleteView
+from company.views import 	CompanyIndexView, \
+							CompanyCreateView, \
+							CompanyDetailView, \
+							CompanyUpdateView, \
+							CompanyDeleteView, \
+							CompanyLetterFilteredView
 
 
 urlpatterns = patterns(
@@ -14,4 +19,6 @@ urlpatterns = patterns(
     	template_name='company/edit.html'), name='edit_company'),
     url(r'^delete/(?P<pk>\d+)/$', CompanyDeleteView.as_view(
     	template_name='company/delete.html'), name='delete_company'),
+    url(r'^filter/(?P<let>[a-z]{1})/$', CompanyLetterFilteredView.as_view(
+    	template_name='company/list.html'), name='letter_filter'),
 )

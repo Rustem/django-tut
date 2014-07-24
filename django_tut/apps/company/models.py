@@ -22,6 +22,6 @@ class Company(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.created = datetime.datetime.today()
-        self.modified = datetime.datetime.today()
+            self.created_at = datetime.datetime.today()
+        self.updated_at = datetime.datetime.today()
         return super(Company, self).save(*args, **kwargs)

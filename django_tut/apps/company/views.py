@@ -6,10 +6,26 @@ from django.core.urlresolvers import reverse_lazy
 from company.models import Company
 from company.forms import CompanyForm
 
+def get_letters(companies):
+	letters = []
+	for c in companies:
+		letters.append(c.name[0])
+	return list(set(letters))
+
 class CompanyIndexView(TemplateView):
 
     def get_context_data(self, **kw):
-        kw['companies'] = Company.objects.all()
+        companies = Company.objects.order_by('name')
+        letters = get_letters(companies)
+        kw['letters'] = letters
+        
+        alphabeted_companies = {}
+        for company in companies:
+        	letter = company.name[0]
+        	if letter not in alphabeted_companies:
+        		alphabeted_companies[letter] = []
+        	alphabeted_companies[letter].append(company)
+        kw['alphabeted_companies'] = alphabeted_companies
         return kw
 
     def get(self, request, *a, **kw):
@@ -30,3 +46,20 @@ class CompanyUpdateView(UpdateView):
 class CompanyDeleteView(DeleteView):
 	model = Company
 	success_url = reverse_lazy('list_company')
+
+class CompanyLetterFilteredView(TemplateView):
+
+    def get_context_data(self, **kw):
+        companies = Company.objects.order_by('name')
+        letters = get_letters(companies)
+        kw['letters'] = letters
+        
+        companies = Company.objects.filter(name__startswith=kw['let']).order_by('name')
+        alphabeted_companies = {kw['let']: []}
+        for company in companies:
+        	alphabeted_companies[kw['let']].append(company)
+        kw['alphabeted_companies'] = alphabeted_companies
+        return kw
+
+    def get(self, request, *a, **kw):
+        return super(CompanyLetterFilteredView, self).get(request, *a, **kw)

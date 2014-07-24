@@ -6,17 +6,36 @@
 	<h1>Companies</h1>
 	<div class="row">
 		<div class="col-md-12">
-			<a href="{% url 'new_company' %}">New company</a>
+			<p><a href="{% url 'new_company' %}">New company</a></p>
 		</div>
 	</div>
-	<table class="table">
-		{% for c in companies %}
-		<tr>
-			<td class="col-md-6">{{ c.name }}</td>
-			<td class="col-md-2"><a href="{% url 'detail_company' c.id %}">View company</a></td>
-			<td class="col-md-2"><a href="{% url 'edit_company' c.id %}">Edit company</a></td>
-			<td class="col-md-2"><a href="{% url 'delete_company' c.id %}">Delete company</a></td>
-		</tr>
-		{% endfor %}
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+			<a href="{% url 'list_company' %}">ALL</a>&nbsp;
+			{% for l in letters %}
+				<a href="{% url 'letter_filter' l|lower %}">{{ l|upper }}</a>&nbsp;
+			{% endfor %}
+			</p>
+		</div>
+	</div>
+	<table class="table table-condensed">
+			{% for key, companies in alphabeted_companies.items %}
+				<thead>
+					<tr class="active">
+						<th colspan="4">{{ key }}</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for c in companies %}
+					<tr>
+						<td class="col-md-6">{{ c.name }}</td>
+						<td class="col-md-2"><a href="{% url 'detail_company' c.id %}">View company</a></td>
+						<td class="col-md-2"><a href="{% url 'edit_company' c.id %}">Edit company</a></td>
+						<td class="col-md-2"><a href="{% url 'delete_company' c.id %}">Delete company</a></td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			{% endfor %}
 	</table>
 {% endblock %}
