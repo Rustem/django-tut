@@ -5,5 +5,5 @@
 {% block body %}
 	<h1>Companies</h1>
 	<ul>{% for c in companies %} <li>{{ c.name }} -- {{ c.phone_number }}</li> {% endfor %}</ul>
-	<a href="{% url 'new-company' %}">New company</a>
+	<a href="{% url 'new_company' %}">New company</a>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse_lazy
 
 from company.models import Company
 from company.forms import CompanyForm
@@ -14,12 +14,6 @@ class CompanyIndexView(TemplateView):
     def get(self, request, *a, **kw):
         return super(CompanyIndexView, self).get(request, *a, **kw)
 
-def create(request):
-	if request.method == "POST":
-		form = CompanyForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/companies/list/')
-	else:
-		form = CompanyForm()
-	return render(request, 'company/new.html', {'form': form})
+class CompanyCreateView(CreateView):
+	form_class = CompanyForm
+	success_url = reverse_lazy('list_company')
