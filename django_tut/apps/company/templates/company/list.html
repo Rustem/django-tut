@@ -6,7 +6,7 @@
 	<h1>Companies</h1>
 	<ul>
 		{% for c in companies %}
-			<li>{{ c.name }} <a href="{% url 'detail_company' c.id %}">View company</a></li>
+			<li>{{ c.name }} <a href="{% url 'detail_company' c.id %}">View company</a></li> <a href="{% url 'edit_company' c.id %}">Edit company</a></li>
 		{% endfor %}
 	</ul>
 	<a href="{% url 'new_company' %}">New company</a>

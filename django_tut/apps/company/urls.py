@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from company.views import CompanyIndexView, CompanyCreateView, CompanyDetailView
+from company.views import CompanyIndexView, CompanyCreateView, CompanyDetailView, CompanyUpdateView
 
 
 urlpatterns = patterns(
@@ -9,5 +9,7 @@ urlpatterns = patterns(
     url(r'^new/$', CompanyCreateView.as_view(
     	template_name='company/new.html'), name='new_company'),
     url(r'^(?P<pk>\d+)/$', CompanyDetailView.as_view(
-    	template_name='company/detail.html'), name='detail_company')
+    	template_name='company/detail.html'), name='detail_company'),
+    url(r'^edit/(?P<pk>\d+)/$', CompanyUpdateView.as_view(
+    	template_name='company/edit.html'), name='edit_company'),
 )
