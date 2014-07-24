@@ -1,5 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse_lazy
 
 from company.models import Company
@@ -17,3 +18,6 @@ class CompanyIndexView(TemplateView):
 class CompanyCreateView(CreateView):
 	form_class = CompanyForm
 	success_url = reverse_lazy('list_company')
+
+class CompanyDetailView(DetailView):
+	model = Company

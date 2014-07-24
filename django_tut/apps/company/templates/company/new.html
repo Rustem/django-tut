@@ -1,5 +1,7 @@
 {% extends 'company/base.html' %}
 
+{% block title%}New company{% endblock %}
+
 {% block body %}
 	<form action='/companies/new/' method='post'>
 		{% csrf_token %}

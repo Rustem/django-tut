@@ -1,0 +1,12 @@
+{% extends "company/base.html" %}
+
+{% block title %} Company information {% endblock %}
+
+{% block body %}
+	<h1>{{ object.name }}</h1>
+	<ul>
+		<li>Phone: {{ object.phone_number }}</li>
+		<li>Site: {{ object.site }}</li>
+	</ul>
+	<a href="{% url 'list_company' %}">Back</a>
+{% endblock %}
