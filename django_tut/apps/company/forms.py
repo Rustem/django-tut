@@ -5,3 +5,4 @@ class CompanyForm(ModelForm):
 
 	class Meta:
 		model = Company
+		exclude = ('created_at', 'updated_at')

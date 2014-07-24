@@ -1,11 +1,18 @@
+{% load bootstrap3 %}
+
 <!DOCTYPE HTML>
 <html>  
     <head>
-        <title>{% block title%}{% endblock %}</title>  
+        <title>{% block title%}{% endblock %}</title>
+        {% bootstrap_css %} 
+        {% bootstrap_javascript %}
     </head>
     <body>
-      {% block body %}
-      {% endblock %}
+
+		<div class="container">
+			{% block body %}
+			{% endblock %}
+		</div><!-- /.container -->
+      
     </body>
 </html>
-    

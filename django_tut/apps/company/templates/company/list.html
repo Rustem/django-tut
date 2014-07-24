@@ -4,10 +4,19 @@
 
 {% block body %}
 	<h1>Companies</h1>
-	<ul>
+	<div class="row">
+		<div class="col-md-12">
+			<a href="{% url 'new_company' %}">New company</a>
+		</div>
+	</div>
+	<table class="table">
 		{% for c in companies %}
-			<li>{{ c.name }} <a href="{% url 'detail_company' c.id %}">View company</a> <a href="{% url 'edit_company' c.id %}">Edit company</a> <a href="{% url 'delete_company' c.id %}">Delete company</a></li>
+		<tr>
+			<td class="col-md-6">{{ c.name }}</td>
+			<td class="col-md-2"><a href="{% url 'detail_company' c.id %}">View company</a></td>
+			<td class="col-md-2"><a href="{% url 'edit_company' c.id %}">Edit company</a></td>
+			<td class="col-md-2"><a href="{% url 'delete_company' c.id %}">Delete company</a></td>
+		</tr>
 		{% endfor %}
-	</ul>
-	<a href="{% url 'new_company' %}">New company</a>
+	</table>
 {% endblock %}
