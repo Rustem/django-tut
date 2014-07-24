@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from company.views import CompanyIndexView, CompanyCreateView, CompanyDetailView, CompanyUpdateView
+from company.views import CompanyIndexView, CompanyCreateView, CompanyDetailView, CompanyUpdateView, CompanyDeleteView
 
 
 urlpatterns = patterns(
@@ -12,4 +12,6 @@ urlpatterns = patterns(
     	template_name='company/detail.html'), name='detail_company'),
     url(r'^edit/(?P<pk>\d+)/$', CompanyUpdateView.as_view(
     	template_name='company/edit.html'), name='edit_company'),
+    url(r'^delete/(?P<pk>\d+)/$', CompanyDeleteView.as_view(
+    	template_name='company/delete.html'), name='delete_company'),
 )
