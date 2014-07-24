@@ -1,0 +1,9 @@
+{% extends "company/base.html" %}
+
+{% block title %} {{ _("Companies") }} {% endblock %}
+
+{% block body %}
+	<h1>Companies</h1>
+	<ul>{% for c in companies %} <li>{{ c.name }} -- {{ c.phone_number }}</li> {% endfor %}</ul>
+	<a href="{% url 'new-company' %}">New company</a>
+{% endblock %}

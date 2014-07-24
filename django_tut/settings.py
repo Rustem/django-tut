@@ -99,3 +99,7 @@ STATICFILES_DIRS = (
     rel('static'),
     rel('company', 'static')
 )
+
+TEMPLATE_DIRS = (
+    rel(PROJECT_BASE_DIR, 'templates'),
+)
