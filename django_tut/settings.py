@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'company',
     'south',
     'bootstrap3',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,3 +105,6 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     rel(PROJECT_BASE_DIR, 'templates'),
 )
+
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'

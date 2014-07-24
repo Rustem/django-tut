@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse_lazy
 from company.models import Company
 from company.forms import CompanyForm
 
+# from company import tasks
+
 def get_letters(companies):
 	letters = []
 	for c in companies:
@@ -18,6 +20,8 @@ class CompanyIndexView(TemplateView):
         companies = Company.objects.order_by('name')
         letters = get_letters(companies)
         kw['letters'] = letters
+
+        # tasks.add.delay(1,2)
         
         alphabeted_companies = {}
         for company in companies:
