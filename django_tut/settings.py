@@ -108,3 +108,9 @@ TEMPLATE_DIRS = (
 
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+SOUTH_TESTS_MIGRATE = False
+
+FIXTURE_DIRS = (
+    rel(PROJECT_BASE_DIR, 'fixtures'),
+)
